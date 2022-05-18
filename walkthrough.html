@@ -431,15 +431,43 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Walkthrough<a class="headerlink" href="#walkthrough" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-problem-representing-multi-stage-models">
 <h2>The problem: Representing multi-stage models<a class="headerlink" href="#the-problem-representing-multi-stage-models" title="Permalink to this headline">¶</a></h2>
-<p>The statistical analysis of neuroimaging data typically occurs across distinct stages of analysis, with parameter estimates from lower levels of analysis propagating to higher levels for subsequent analysis.</p>
-<p>For example, in fMRI it is common to first fit a design matrix to run-level time series followed by a fixed-effects model to combine estimates at the subject-level. Finally, a dataset-level (or “group level”) random-effects one-sample t-test can be performed to estimate population level effects. At each level of the analysis, we need to know which image inputs correspond to which design matrix, and more how to keep track of and combine outputs from the previous level at the current level of analysis.</p>
-<p><em>BIDS Stats Models</em> proposes a general machine-readable document to describe multi-stage neuroimaging analyses in a precise, yet flexible manner. We accomplish this by defining a <em>graph</em> composed of <strong>Nodes</strong> representing each level of the analysis and <strong>Edges</strong> which define the flow of data from one Node to another. Within each <a class="reference internal" href="_autosummary/bsmschema.models.Node.html#bsmschema.models.Node" title="bsmschema.models.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a> we specify a <a class="reference internal" href="_autosummary/bsmschema.models.Model.html#bsmschema.models.Model" title="bsmschema.models.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a> to estimate, and at least one <a class="reference internal" href="_autosummary/bsmschema.models.Contrast.html#bsmschema.models.Contrast" title="bsmschema.models.Contrast"><code class="xref py py-class docutils literal notranslate"><span class="pre">Contrast</span></code></a> to define the computed outputs of each <code class="docutils literal notranslate"><span class="pre">Node</span></code>. Within each node we also specify how to group the incoming inputs into analysis units using the <a class="reference internal" href="_autosummary/bsmschema.models.Node.html#bsmschema.models.Node.GroupBy" title="bsmschema.models.Node.GroupBy"><code class="xref py py-attr docutils literal notranslate"><span class="pre">GroupBy</span></code></a> directive.</p>
+<p>The statistical analysis of neuroimaging data typically occurs across distinct
+stages of analysis, with parameter estimates from lower levels of analysis
+propagating to higher levels for subsequent analysis.</p>
+<p>For example, in fMRI it is common to first fit a design matrix to run-level time
+series followed by a fixed-effects model to combine estimates at the
+subject-level. Finally, a dataset-level (or “group level”) random-effects
+one-sample t-test can be performed to estimate population level effects. At each
+level of the analysis, we need to know which image inputs correspond to which
+design matrix, and more how to keep track of and combine outputs from the
+previous level at the current level of analysis.</p>
+<p><em>BIDS Stats Models</em> proposes a general machine-readable document to describe
+multi-stage neuroimaging analyses in a precise, yet flexible manner. We
+accomplish this by defining a <em>graph</em> composed of <strong>Nodes</strong> representing each
+level of the analysis and <strong>Edges</strong> which define the flow of data from one Node
+to another. Within each <a class="reference internal" href="_autosummary/bsmschema.models.Node.html#bsmschema.models.Node" title="bsmschema.models.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a> we specify a
+<a class="reference internal" href="_autosummary/bsmschema.models.Model.html#bsmschema.models.Model" title="bsmschema.models.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a> to estimate, and at least one
+<a class="reference internal" href="_autosummary/bsmschema.models.Contrast.html#bsmschema.models.Contrast" title="bsmschema.models.Contrast"><code class="xref py py-class docutils literal notranslate"><span class="pre">Contrast</span></code></a> to define the computed outputs of each
+<code class="docutils literal notranslate"><span class="pre">Node</span></code>. Within each node we also specify how to group the incoming inputs into
+analysis units using the <a class="reference internal" href="_autosummary/bsmschema.models.Node.html#bsmschema.models.Node.GroupBy" title="bsmschema.models.Node.GroupBy"><code class="xref py py-attr docutils literal notranslate"><span class="pre">GroupBy</span></code></a> directive.</p>
 </div>
 <div class="section" id="a-simple-example">
 <h2>A simple example<a class="headerlink" href="#a-simple-example" title="Permalink to this headline">¶</a></h2>
-<p>In a <a class="reference external" href="https://openneuro.org/datasets/ds000101/versions/00004">Simon task</a>, participants were scanned for 2 runs and asked to indicate whether a diamond that was presented to the left or right of a central fixation cross was green or red. There were two conditions: color-spatial <em>congruent</em> and <em>incongruent</em> trials.</p>
-<p>A basic analysis of this task is to determine which regions showed <em>greater activity for incongruent versus congruent trials</em>, across all participants.</p>
-<p>We can perform this analysis by first estimating a <strong>run-level</strong> timeseries model for “Incongruent” and “Congruent” trials–separately for each individual run. We then compute a contrast comparing <em>Incongruent &gt; Congruent</em> (IvC) trials. Next, we pass the resulting statistical maps for the contrast to a <strong>subject-level</strong> estimator, which computes the average <em>IvC</em> effect for each subject separately. Finally, we pass the resulting estimates to a <strong>dataset-level</strong> estimator, which conduts a one-sample t-test across all of the subject estimates for the <em>IvC</em> contrast.</p>
+<p>In a <a class="reference external" href="https://openneuro.org/datasets/ds000101/versions/00004">Simon task</a>,
+participants were scanned for 2 runs and asked to indicate whether a diamond
+that was presented to the left or right of a central fixation cross was green or
+red. There were two conditions: color-spatial <em>congruent</em> and <em>incongruent</em>
+trials.</p>
+<p>A basic analysis of this task is to determine which regions showed <em>greater
+activity for incongruent versus congruent trials</em>, across all participants.</p>
+<p>We can perform this analysis by first estimating a <strong>run-level</strong> timeseries
+model for “Incongruent” and “Congruent” trials–separately for each individual
+run. We then compute a contrast comparing <em>Incongruent &gt; Congruent</em> (IvC)
+trials. Next, we pass the resulting statistical maps for the contrast to a
+<strong>subject-level</strong> estimator, which computes the average <em>IvC</em> effect for each
+subject separately. Finally, we pass the resulting estimates to a
+<strong>dataset-level</strong> estimator, which conduts a one-sample t-test across all of the
+subject estimates for the <em>IvC</em> contrast.</p>
 <p>Let’s visualize this model for 3 participants:</p>
 <p><img alt="flow" src="_images/flow_model.png" /></p>
 <p>We can formally represent this analysis as <strong>BIDS Stats Model</strong>:</p>
@@ -498,7 +526,8 @@ const thebe_selector_output = ".output, .cell_output"
 <p class="admonition-title">Note</p>
 <p>For this example, we have limited the model to three subjects using the <code class="docutils literal notranslate"><span class="pre">Input</span></code> key.</p>
 </div>
-<p><em>BSM</em> defines this multi-stage analysis as a Graph, with each level of analysis defined as a separate <code class="docutils literal notranslate"><span class="pre">Node</span></code> object.</p>
+<p><em>BSM</em> defines this multi-stage analysis as a Graph, with each level of analysis
+defined as a separate <code class="docutils literal notranslate"><span class="pre">Node</span></code> object.</p>
 <div class="section" id="run-level-model">
 <h3>Run-level Model<a class="headerlink" href="#run-level-model" title="Permalink to this headline">¶</a></h3>
 <p>First, we define a <code class="docutils literal notranslate"><span class="pre">Node</span></code> for the run level analysis.</p>
@@ -506,7 +535,10 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="w">      </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;run_level&quot;</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Note that the <a class="reference internal" href="_autosummary/bsmschema.models.Node.html#bsmschema.models.Node.Level" title="bsmschema.models.Node.Level"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Level</span></code></a> key is necessary for determining which input images are available to the estimator. At the <code class="docutils literal notranslate"><span class="pre">Run</span></code> level, there are many sources of possible variables, most notably <code class="docutils literal notranslate"><span class="pre">_events.tsv</span></code> files which define the timing of task-related events.</p>
+<p>Note that the <a class="reference internal" href="_autosummary/bsmschema.models.Node.html#bsmschema.models.Node.Level" title="bsmschema.models.Node.Level"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Level</span></code></a> key is necessary for
+determining which input images are available to the estimator. At the <code class="docutils literal notranslate"><span class="pre">Run</span></code>
+level, there are many sources of possible variables, most notably <code class="docutils literal notranslate"><span class="pre">_events.tsv</span></code>
+files which define the timing of task-related events.</p>
 <p>Next we define a <a class="reference internal" href="_autosummary/bsmschema.models.Model.html#bsmschema.models.Model" title="bsmschema.models.Model"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Model</span></code></a> for this node.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;Model&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;X&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;incongruent&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;congruent&quot;</span><span class="p">],</span><span class="w"></span>
@@ -514,8 +546,12 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="w">      </span><span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The <a class="reference internal" href="_autosummary/bsmschema.models.Model.html#bsmschema.models.Model.X" title="bsmschema.models.Model.X"><code class="xref py py-attr docutils literal notranslate"><span class="pre">X</span></code></a> parameter defines the variables in the design matrix. Here, we are modeling the <code class="docutils literal notranslate"><span class="pre">incongruent</span></code> and <code class="docutils literal notranslate"><span class="pre">congruent</span></code> trial types, in addition to an intercept (idenitified by the special key: <code class="docutils literal notranslate"><span class="pre">1</span></code>; see: _).</p>
-<p>Next, we specify an <em>Incongruent-Congruent (IvC)</em> contrast using the <a class="reference internal" href="_autosummary/bsmschema.models.Contrast.html#bsmschema.models.Contrast" title="bsmschema.models.Contrast"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Contrast</span></code></a> key:</p>
+<p>The <a class="reference internal" href="_autosummary/bsmschema.models.Model.html#bsmschema.models.Model.X" title="bsmschema.models.Model.X"><code class="xref py py-attr docutils literal notranslate"><span class="pre">X</span></code></a> parameter defines the variables in the
+design matrix. Here, we are modeling the <code class="docutils literal notranslate"><span class="pre">incongruent</span></code> and <code class="docutils literal notranslate"><span class="pre">congruent</span></code> trial
+types, in addition to an intercept (idenitified by the special key: <code class="docutils literal notranslate"><span class="pre">1</span></code>; see:
+_).</p>
+<p>Next, we specify an <em>Incongruent-Congruent (IvC)</em> contrast using the
+<a class="reference internal" href="_autosummary/bsmschema.models.Contrast.html#bsmschema.models.Contrast" title="bsmschema.models.Contrast"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Contrast</span></code></a> key:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;Contrasts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
 <span class="w">        </span><span class="p">{</span><span class="w"></span>
 <span class="w">          </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IvC&quot;</span><span class="p">,</span><span class="w"></span>
@@ -526,7 +562,9 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="w">      </span><span class="p">]</span><span class="w"></span>
 </pre></div>
 </div>
-<p>If you have used other fMRI modeling tools this should be familar. We have specified a t-test contrast with the weights <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">-1]</span></code> for the conditions: <code class="docutils literal notranslate"><span class="pre">[&quot;incongruent&quot;,</span> <span class="pre">&quot;congruent&quot;]</span></code> and given this contrast the name <code class="docutils literal notranslate"><span class="pre">IvC</span></code>.</p>
+<p>If you have used other fMRI modeling tools this should be familar. We have
+specified a t-test contrast with the weights <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">-1]</span></code> for the conditions:
+<code class="docutils literal notranslate"><span class="pre">[&quot;incongruent&quot;,</span> <span class="pre">&quot;congruent&quot;]</span></code> and given this contrast the name <code class="docutils literal notranslate"><span class="pre">IvC</span></code>.</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p><code class="docutils literal notranslate"><span class="pre">Contrasts</span></code> <strong>define the outputs</strong> that will be available to the next <code class="docutils literal notranslate"><span class="pre">Node</span></code>.</p>
@@ -534,13 +572,21 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="how-to-group-analysis-inputs">
 <h4>How to <em>group</em> analysis inputs?<a class="headerlink" href="#how-to-group-analysis-inputs" title="Permalink to this headline">¶</a></h4>
-<p>An underappreciated factor in multi-stage models is the grouping of image inputs into analysis units. For example, here we want to estimate a timeseries model for each <code class="docutils literal notranslate"><span class="pre">Run</span></code> separately, rather that concatenating all runs for each subject into one large model.</p>
-<p>We must explicitly define this grouping structure using the <a class="reference internal" href="_autosummary/bsmschema.models.Node.html#bsmschema.models.Node.GroupBy" title="bsmschema.models.Node.GroupBy"><code class="xref py py-attr docutils literal notranslate"><span class="pre">GroupBy</span></code></a> key for every node. To fit a separate time series model for each individual run image, we specify:</p>
+<p>An underappreciated factor in multi-stage models is the grouping of image inputs
+into analysis units. For example, here we want to estimate a timeseries model
+for each <code class="docutils literal notranslate"><span class="pre">Run</span></code> separately, rather that concatenating all runs for each subject
+into one large model.</p>
+<p>We must explicitly define this grouping structure using the
+<a class="reference internal" href="_autosummary/bsmschema.models.Node.html#bsmschema.models.Node.GroupBy" title="bsmschema.models.Node.GroupBy"><code class="xref py py-attr docutils literal notranslate"><span class="pre">GroupBy</span></code></a> key for every node. To fit a separate
+time series model for each individual run image, we specify:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;GroupBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;run&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;subject&quot;</span><span class="p">]</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Here, <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> states that for every unique combination of <code class="docutils literal notranslate"><span class="pre">run</span></code> and <code class="docutils literal notranslate"><span class="pre">subject</span></code>, we will fit a separate model. This results in a single input image per model.</p>
-<p>If you are familar with tabular data such as R <code class="docutils literal notranslate"><span class="pre">DataFrames</span></code>, or <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, the <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> operation should be familar. For instance, given three subjects with two runs each, we can define 6 rows in a table (3x2):</p>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> states that for every unique combination of <code class="docutils literal notranslate"><span class="pre">run</span></code> and <code class="docutils literal notranslate"><span class="pre">subject</span></code>,
+we will fit a separate model. This results in a single input image per model.</p>
+<p>If you are familar with tabular data such as R <code class="docutils literal notranslate"><span class="pre">DataFrames</span></code>, or <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, the
+<code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> operation should be familar. For instance, given three subjects with
+two runs each, we can define 6 rows in a table (3x2):</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>image</p></th>
@@ -575,27 +621,35 @@ const thebe_selector_output = ".output, .cell_output"
 </tr>
 </tbody>
 </table>
-<p>If we <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> <em>subject</em>, there would be three groups of images–one for each subject. If we <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> <em>run</em>, all images with the same <em>run</em> ID would be grouped together, resulting in two groups, one for each distinct group ID.</p>
-<p>However, since we want to model each <code class="docutils literal notranslate"><span class="pre">BOLD</span></code> image separately, we must <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> <strong>both <em>subject</em> and <em>run</em></strong>, resulting in six groups with a single image each.</p>
+<p>If we <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> <em>subject</em>, there would be three groups of images–one for each
+subject. If we <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> <em>run</em>, all images with the same <em>run</em> ID would be
+grouped together, resulting in two groups, one for each distinct group ID.</p>
+<p>However, since we want to model each <code class="docutils literal notranslate"><span class="pre">BOLD</span></code> image separately, we must <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code>
+<strong>both <em>subject</em> and <em>run</em></strong>, resulting in six groups with a single image each.</p>
 </div>
 </div>
 <div class="section" id="subject-level-node">
 <h3>Subject level Node<a class="headerlink" href="#subject-level-node" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="from-run-outputs-to-subject-inputs">
 <h4>From Run Outputs to Subject Inputs<a class="headerlink" href="#from-run-outputs-to-subject-inputs" title="Permalink to this headline">¶</a></h4>
-<p>Next, we define a fixed-effects model to combine contrast outputs from each subject’s runs together.</p>
+<p>Next, we define a fixed-effects model to combine contrast outputs from each
+subject’s runs together.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>By default, <code class="docutils literal notranslate"><span class="pre">Nodes</span></code> are linked sequentially, with all the <code class="docutils literal notranslate"><span class="pre">Contrast</span></code> outputs from a <code class="docutils literal notranslate"><span class="pre">Node</span></code> available to the subsequent <code class="docutils literal notranslate"><span class="pre">Node</span></code>.</p>
 </div>
-<p>We need to use <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> to define how to group the outputs from the <code class="docutils literal notranslate"><span class="pre">Run</span></code> node as inputs to the <code class="docutils literal notranslate"><span class="pre">Subject</span></code> level:</p>
+<p>We need to use <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> to define how to group the outputs from the <code class="docutils literal notranslate"><span class="pre">Run</span></code> node
+as inputs to the <code class="docutils literal notranslate"><span class="pre">Subject</span></code> level:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;Level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Subject&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;subject_level&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nt">&quot;GroupBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;contrast&quot;</span><span class="p">],</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Here we are specifying that all images belonging to a single <code class="docutils literal notranslate"><span class="pre">subject</span></code> and from a single <code class="docutils literal notranslate"><span class="pre">contrast</span></code> should be grouped together for analysis.</p>
-<p>Note that with 3 subjects and 2 runs, we will have 6 groups of output images from the <code class="docutils literal notranslate"><span class="pre">Run</span></code> node. Given two types of images (<code class="docutils literal notranslate"><span class="pre">variance</span></code> and <code class="docutils literal notranslate"><span class="pre">effect</span></code>), this results in 12 images that would be grouped as follows:</p>
+<p>Here we are specifying that all images belonging to a single <code class="docutils literal notranslate"><span class="pre">subject</span></code> and from
+a single <code class="docutils literal notranslate"><span class="pre">contrast</span></code> should be grouped together for analysis.</p>
+<p>Note that with 3 subjects and 2 runs, we will have 6 groups of output images
+from the <code class="docutils literal notranslate"><span class="pre">Run</span></code> node. Given two types of images (<code class="docutils literal notranslate"><span class="pre">variance</span></code> and <code class="docutils literal notranslate"><span class="pre">effect</span></code>), this
+results in 12 images that would be grouped as follows:</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>image</p></th>
@@ -684,10 +738,17 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="subject-level-model">
 <h4>Subject-level Model<a class="headerlink" href="#subject-level-model" title="Permalink to this headline">¶</a></h4>
-<p>We can now specify the <code class="docutils literal notranslate"><span class="pre">Subject</span></code> level <code class="docutils literal notranslate"><span class="pre">Model</span></code>. Since our intent is to estimate the <em>mean</em> for each subject, we only need an intercept (<code class="docutils literal notranslate"><span class="pre">1</span></code>) in our model. We specify the <code class="docutils literal notranslate"><span class="pre">&quot;Type&quot;</span></code> to be <code class="docutils literal notranslate"><span class="pre">Meta</span></code>, which is a special type to identify fixed-effects models.</p>
-<p>Remember that we must specify <code class="docutils literal notranslate"><span class="pre">Contrasts</span></code> in order to produce outputs for the next <code class="docutils literal notranslate"><span class="pre">Node</span></code>. Here, we compute a simple identity contrast to pass forward the subject-evel estimates forward. Note that we specified the <code class="docutils literal notranslate"><span class="pre">Test</span></code> as <code class="docutils literal notranslate"><span class="pre">pass</span></code>, since we don’t want to perform a t-test, but simply need to compute and pass forward parameter and variance estimates.</p>
+<p>We can now specify the <code class="docutils literal notranslate"><span class="pre">Subject</span></code> level <code class="docutils literal notranslate"><span class="pre">Model</span></code>. Since our intent is to estimate
+the <em>mean</em> for each subject, we only need an intercept (<code class="docutils literal notranslate"><span class="pre">1</span></code>) in our model. We
+specify the <code class="docutils literal notranslate"><span class="pre">&quot;Type&quot;</span></code> to be <code class="docutils literal notranslate"><span class="pre">Meta</span></code>, which is a special type to identify
+fixed-effects models.</p>
+<p>Remember that we must specify <code class="docutils literal notranslate"><span class="pre">Contrasts</span></code> in order to produce outputs for the
+next <code class="docutils literal notranslate"><span class="pre">Node</span></code>. Here, we compute a simple identity contrast to pass forward the
+subject-evel estimates forward. Note that we specified the <code class="docutils literal notranslate"><span class="pre">Test</span></code> as <code class="docutils literal notranslate"><span class="pre">pass</span></code>,
+since we don’t want to perform a t-test, but simply need to compute and pass
+forward parameter and variance estimates.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;Model&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;X&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span>
+<span class="w">        </span><span class="nt">&quot;X&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Meta&quot;</span><span class="w"></span>
 <span class="w">      </span><span class="p">},</span><span class="w"></span>
 <span class="w">      </span><span class="nt">&quot;Contrasts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
@@ -704,13 +765,17 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="dataset-level-node">
 <h3>Dataset level Node<a class="headerlink" href="#dataset-level-node" title="Permalink to this headline">¶</a></h3>
-<p>We are ready to perform a one-sample t-test to estimate population-level effects for the <em>IvC</em> <code class="docutils literal notranslate"><span class="pre">Contrast</span></code>. We refer to this level as the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> level.</p>
+<p>We are ready to perform a one-sample t-test to estimate population-level effects
+for the <em>IvC</em> <code class="docutils literal notranslate"><span class="pre">Contrast</span></code>. We refer to this level as the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> level.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;Level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dataset&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;one-sample_dataset&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nt">&quot;GroupBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;contrast&quot;</span><span class="p">],</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Here we only need to <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> <code class="docutils literal notranslate"><span class="pre">contrast</span></code>, as we want a separate estimate for each contrast, but want to include all subjects in the same analysis. Since we only have one <code class="docutils literal notranslate"><span class="pre">contrast</span></code>, all the incoming subject-level images will be grouped together:</p>
+<p>Here we only need to <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> <code class="docutils literal notranslate"><span class="pre">contrast</span></code>, as we want a separate estimate for
+each contrast, but want to include all subjects in the same analysis. Since we
+only have one <code class="docutils literal notranslate"><span class="pre">contrast</span></code>, all the incoming subject-level images will be grouped
+together:</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>image</p></th>
@@ -745,7 +810,9 @@ const thebe_selector_output = ".output, .cell_output"
 </tr>
 </tbody>
 </table>
-<p>As before, we can specify an intercept-only model, but of type <code class="docutils literal notranslate"><span class="pre">glm</span></code> since we want to perform a random-effects analysis. We also specify a single identity t-test <code class="docutils literal notranslate"><span class="pre">Contrast</span></code> in order to compute the output of this <code class="docutils literal notranslate"><span class="pre">Node</span></code>.</p>
+<p>As before, we can specify an intercept-only model, but of type <code class="docutils literal notranslate"><span class="pre">glm</span></code> since we
+want to perform a random-effects analysis. We also specify a single identity
+t-test <code class="docutils literal notranslate"><span class="pre">Contrast</span></code> in order to compute the output of this <code class="docutils literal notranslate"><span class="pre">Node</span></code>.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;Model&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;X&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;glm&quot;</span><span class="w"></span>
