@@ -355,8 +355,8 @@ const thebe_selector_output = ".output, .cell_output"
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#subject-level-model">
-       Subject-level Model
+      <a class="reference internal nav-link" href="#subject-model">
+       Subject Model
       </a>
      </li>
     </ul>
@@ -425,8 +425,8 @@ const thebe_selector_output = ".output, .cell_output"
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#subject-level-model">
-       Subject-level Model
+      <a class="reference internal nav-link" href="#subject-model">
+       Subject Model
       </a>
      </li>
     </ul>
@@ -494,7 +494,7 @@ subject estimates for the <em>IvC</em> contrast.</p>
 <div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Simon IvC&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">  </span><span class="nt">&quot;BIDSModelVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;Input&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;subject&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;01&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;02&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;03&quot;</span><span class="p">]},</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;Input&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;subject&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;01&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;02&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;03&quot;</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;task&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;simon&quot;</span><span class="p">},</span><span class="w"></span>
 <span class="w">  </span><span class="nt">&quot;Nodes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">      </span><span class="nt">&quot;Level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Run&quot;</span><span class="p">,</span><span class="w"></span>
@@ -515,28 +515,14 @@ subject estimates for the <em>IvC</em> contrast.</p>
 <span class="w">      </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;subject_level&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nt">&quot;GroupBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;contrast&quot;</span><span class="p">],</span><span class="w"></span>
 <span class="w">      </span><span class="nt">&quot;Model&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;X&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;meta&quot;</span><span class="p">},</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;Contrasts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IvC&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;ConditionList&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;IvC&quot;</span><span class="p">],</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;Weights&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;Test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pass&quot;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;DummyContrasts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;Test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pass&quot;</span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">},</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">      </span><span class="nt">&quot;Level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dataset&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;one-sample_dataset&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nt">&quot;GroupBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;contrast&quot;</span><span class="p">],</span><span class="w"></span>
 <span class="w">      </span><span class="nt">&quot;Model&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;X&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;glm&quot;</span><span class="p">},</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;Contrasts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IvC&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;ConditionList&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;IvC&quot;</span><span class="p">],</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;Weights&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;Test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;DummyContrasts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;Test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="w">  </span><span class="p">]</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
@@ -565,9 +551,7 @@ files which define the timing of task-related events.</p>
 </div>
 <p>The <a class="reference internal" href="_autosummary/bsmschema.models.Model.html#bsmschema.models.Model.X" title="bsmschema.models.Model.X"><code class="xref py py-attr docutils literal notranslate"><span class="pre">X</span></code></a> parameter defines the variables in the design matrix. Here, we are modeling the <code class="docutils literal notranslate"><span class="pre">incongruent</span></code> and <code class="docutils literal notranslate"><span class="pre">congruent</span></code> trial types, in addition to an intercept (idenitified by the special key: <code class="docutils literal notranslate"><span class="pre">1</span></code>; see: _).</p>
 <p>Next, we specify an <em>Incongruent-Congruent (IvC)</em> contrast using the <a class="reference internal" href="_autosummary/bsmschema.models.Contrast.html#bsmschema.models.Contrast" title="bsmschema.models.Contrast"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Contrast</span></code></a> key:</p>
-<p>Next, we specify an <em>Incongruent-Congruent (IvC)</em> contrast using the
-<a class="reference internal" href="_autosummary/bsmschema.models.Contrast.html#bsmschema.models.Contrast" title="bsmschema.models.Contrast"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Contrast</span></code></a> key:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;Contrasts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;Contrasts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
 <span class="w">        </span><span class="p">{</span><span class="w"></span>
 <span class="w">          </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IvC&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">          </span><span class="nt">&quot;ConditionList&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;incongruent&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;congruent&quot;</span><span class="p">],</span><span class="w"></span>
@@ -594,7 +578,7 @@ into one large model.</p>
 <p>We must explicitly define this grouping structure using the
 <a class="reference internal" href="_autosummary/bsmschema.models.Node.html#bsmschema.models.Node.GroupBy" title="bsmschema.models.Node.GroupBy"><code class="xref py py-attr docutils literal notranslate"><span class="pre">GroupBy</span></code></a> key for every node. To fit a separate
 time series model for each individual run image, we specify:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;GroupBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;run&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;subject&quot;</span><span class="p">]</span><span class="w"></span>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;GroupBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;run&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;subject&quot;</span><span class="p">],</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Here, <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> states that for every unique combination of <code class="docutils literal notranslate"><span class="pre">run</span></code> and <code class="docutils literal notranslate"><span class="pre">subject</span></code>,
@@ -606,44 +590,44 @@ two runs each, we can define 6 rows in a table (3x2):</p>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_c2367">
+<table id="T_5ec27">
   <thead>
     <tr>
-      <th id="T_c2367_level0_col0" class="col_heading level0 col0" >subject</th>
-      <th id="T_c2367_level0_col1" class="col_heading level0 col1" >run</th>
-      <th id="T_c2367_level0_col2" class="col_heading level0 col2" >image</th>
+      <th id="T_5ec27_level0_col0" class="col_heading level0 col0" >subject</th>
+      <th id="T_5ec27_level0_col1" class="col_heading level0 col1" >run</th>
+      <th id="T_5ec27_level0_col2" class="col_heading level0 col2" >image</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_c2367_row0_col0" class="data row0 col0" >01</td>
-      <td id="T_c2367_row0_col1" class="data row0 col1" >1</td>
-      <td id="T_c2367_row0_col2" class="data row0 col2" >sub-01_task-simon_run-1_bold.nii.gz</td>
+      <td id="T_5ec27_row0_col0" class="data row0 col0" >01</td>
+      <td id="T_5ec27_row0_col1" class="data row0 col1" >1</td>
+      <td id="T_5ec27_row0_col2" class="data row0 col2" >sub-01_task-simon_run-1_bold.nii.gz</td>
     </tr>
     <tr>
-      <td id="T_c2367_row1_col0" class="data row1 col0" >01</td>
-      <td id="T_c2367_row1_col1" class="data row1 col1" >2</td>
-      <td id="T_c2367_row1_col2" class="data row1 col2" >sub-01_task-simon_run-2_bold.nii.gz</td>
+      <td id="T_5ec27_row1_col0" class="data row1 col0" >01</td>
+      <td id="T_5ec27_row1_col1" class="data row1 col1" >2</td>
+      <td id="T_5ec27_row1_col2" class="data row1 col2" >sub-01_task-simon_run-2_bold.nii.gz</td>
     </tr>
     <tr>
-      <td id="T_c2367_row2_col0" class="data row2 col0" >02</td>
-      <td id="T_c2367_row2_col1" class="data row2 col1" >1</td>
-      <td id="T_c2367_row2_col2" class="data row2 col2" >sub-02_task-simon_run-1_bold.nii.gz</td>
+      <td id="T_5ec27_row2_col0" class="data row2 col0" >02</td>
+      <td id="T_5ec27_row2_col1" class="data row2 col1" >1</td>
+      <td id="T_5ec27_row2_col2" class="data row2 col2" >sub-02_task-simon_run-1_bold.nii.gz</td>
     </tr>
     <tr>
-      <td id="T_c2367_row3_col0" class="data row3 col0" >02</td>
-      <td id="T_c2367_row3_col1" class="data row3 col1" >2</td>
-      <td id="T_c2367_row3_col2" class="data row3 col2" >sub-02_task-simon_run-2_bold.nii.gz</td>
+      <td id="T_5ec27_row3_col0" class="data row3 col0" >02</td>
+      <td id="T_5ec27_row3_col1" class="data row3 col1" >2</td>
+      <td id="T_5ec27_row3_col2" class="data row3 col2" >sub-02_task-simon_run-2_bold.nii.gz</td>
     </tr>
     <tr>
-      <td id="T_c2367_row4_col0" class="data row4 col0" >03</td>
-      <td id="T_c2367_row4_col1" class="data row4 col1" >1</td>
-      <td id="T_c2367_row4_col2" class="data row4 col2" >sub-03_task-simon_run-1_bold.nii.gz</td>
+      <td id="T_5ec27_row4_col0" class="data row4 col0" >03</td>
+      <td id="T_5ec27_row4_col1" class="data row4 col1" >1</td>
+      <td id="T_5ec27_row4_col2" class="data row4 col2" >sub-03_task-simon_run-1_bold.nii.gz</td>
     </tr>
     <tr>
-      <td id="T_c2367_row5_col0" class="data row5 col0" >03</td>
-      <td id="T_c2367_row5_col1" class="data row5 col1" >2</td>
-      <td id="T_c2367_row5_col2" class="data row5 col2" >sub-03_task-simon_run-2_bold.nii.gz</td>
+      <td id="T_5ec27_row5_col0" class="data row5 col0" >03</td>
+      <td id="T_5ec27_row5_col1" class="data row5 col1" >2</td>
+      <td id="T_5ec27_row5_col2" class="data row5 col2" >sub-03_task-simon_run-2_bold.nii.gz</td>
     </tr>
   </tbody>
 </table>
@@ -654,70 +638,70 @@ two runs each, we can define 6 rows in a table (3x2):</p>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_63f15">
+<table id="T_ed1c7">
   <thead>
     <tr>
-      <th id="T_63f15_level0_col0" class="col_heading level0 col0" >subject</th>
-      <th id="T_63f15_level0_col1" class="col_heading level0 col1" >run</th>
-      <th id="T_63f15_level0_col2" class="col_heading level0 col2" >image</th>
+      <th id="T_ed1c7_level0_col0" class="col_heading level0 col0" >subject</th>
+      <th id="T_ed1c7_level0_col1" class="col_heading level0 col1" >run</th>
+      <th id="T_ed1c7_level0_col2" class="col_heading level0 col2" >image</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_63f15_row0_col0" class="data row0 col0" >01</td>
-      <td id="T_63f15_row0_col1" class="data row0 col1" >1</td>
-      <td id="T_63f15_row0_col2" class="data row0 col2" >sub-01_task-simon_run-1_bold.nii.gz</td>
+      <td id="T_ed1c7_row0_col0" class="data row0 col0" >01</td>
+      <td id="T_ed1c7_row0_col1" class="data row0 col1" >1</td>
+      <td id="T_ed1c7_row0_col2" class="data row0 col2" >sub-01_task-simon_run-1_bold.nii.gz</td>
     </tr>
     <tr>
-      <td id="T_63f15_row1_col0" class="data row1 col0" >01</td>
-      <td id="T_63f15_row1_col1" class="data row1 col1" >2</td>
-      <td id="T_63f15_row1_col2" class="data row1 col2" >sub-01_task-simon_run-2_bold.nii.gz</td>
+      <td id="T_ed1c7_row1_col0" class="data row1 col0" >01</td>
+      <td id="T_ed1c7_row1_col1" class="data row1 col1" >2</td>
+      <td id="T_ed1c7_row1_col2" class="data row1 col2" >sub-01_task-simon_run-2_bold.nii.gz</td>
     </tr>
   </tbody>
 </table>
 </div><div class="output text_html"><style type="text/css">
 </style>
-<table id="T_d5c07">
+<table id="T_18e4b">
   <thead>
     <tr>
-      <th id="T_d5c07_level0_col0" class="col_heading level0 col0" >subject</th>
-      <th id="T_d5c07_level0_col1" class="col_heading level0 col1" >run</th>
-      <th id="T_d5c07_level0_col2" class="col_heading level0 col2" >image</th>
+      <th id="T_18e4b_level0_col0" class="col_heading level0 col0" >subject</th>
+      <th id="T_18e4b_level0_col1" class="col_heading level0 col1" >run</th>
+      <th id="T_18e4b_level0_col2" class="col_heading level0 col2" >image</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_d5c07_row0_col0" class="data row0 col0" >02</td>
-      <td id="T_d5c07_row0_col1" class="data row0 col1" >1</td>
-      <td id="T_d5c07_row0_col2" class="data row0 col2" >sub-02_task-simon_run-1_bold.nii.gz</td>
+      <td id="T_18e4b_row0_col0" class="data row0 col0" >02</td>
+      <td id="T_18e4b_row0_col1" class="data row0 col1" >1</td>
+      <td id="T_18e4b_row0_col2" class="data row0 col2" >sub-02_task-simon_run-1_bold.nii.gz</td>
     </tr>
     <tr>
-      <td id="T_d5c07_row1_col0" class="data row1 col0" >02</td>
-      <td id="T_d5c07_row1_col1" class="data row1 col1" >2</td>
-      <td id="T_d5c07_row1_col2" class="data row1 col2" >sub-02_task-simon_run-2_bold.nii.gz</td>
+      <td id="T_18e4b_row1_col0" class="data row1 col0" >02</td>
+      <td id="T_18e4b_row1_col1" class="data row1 col1" >2</td>
+      <td id="T_18e4b_row1_col2" class="data row1 col2" >sub-02_task-simon_run-2_bold.nii.gz</td>
     </tr>
   </tbody>
 </table>
 </div><div class="output text_html"><style type="text/css">
 </style>
-<table id="T_a0c91">
+<table id="T_107e2">
   <thead>
     <tr>
-      <th id="T_a0c91_level0_col0" class="col_heading level0 col0" >subject</th>
-      <th id="T_a0c91_level0_col1" class="col_heading level0 col1" >run</th>
-      <th id="T_a0c91_level0_col2" class="col_heading level0 col2" >image</th>
+      <th id="T_107e2_level0_col0" class="col_heading level0 col0" >subject</th>
+      <th id="T_107e2_level0_col1" class="col_heading level0 col1" >run</th>
+      <th id="T_107e2_level0_col2" class="col_heading level0 col2" >image</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_a0c91_row0_col0" class="data row0 col0" >03</td>
-      <td id="T_a0c91_row0_col1" class="data row0 col1" >1</td>
-      <td id="T_a0c91_row0_col2" class="data row0 col2" >sub-03_task-simon_run-1_bold.nii.gz</td>
+      <td id="T_107e2_row0_col0" class="data row0 col0" >03</td>
+      <td id="T_107e2_row0_col1" class="data row0 col1" >1</td>
+      <td id="T_107e2_row0_col2" class="data row0 col2" >sub-03_task-simon_run-1_bold.nii.gz</td>
     </tr>
     <tr>
-      <td id="T_a0c91_row1_col0" class="data row1 col0" >03</td>
-      <td id="T_a0c91_row1_col1" class="data row1 col1" >2</td>
-      <td id="T_a0c91_row1_col2" class="data row1 col2" >sub-03_task-simon_run-2_bold.nii.gz</td>
+      <td id="T_107e2_row1_col0" class="data row1 col0" >03</td>
+      <td id="T_107e2_row1_col1" class="data row1 col1" >2</td>
+      <td id="T_107e2_row1_col2" class="data row1 col2" >sub-03_task-simon_run-2_bold.nii.gz</td>
     </tr>
   </tbody>
 </table>
@@ -728,57 +712,57 @@ two runs each, we can define 6 rows in a table (3x2):</p>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_d0ffb">
+<table id="T_4b76b">
   <thead>
     <tr>
-      <th id="T_d0ffb_level0_col0" class="col_heading level0 col0" >subject</th>
-      <th id="T_d0ffb_level0_col1" class="col_heading level0 col1" >run</th>
-      <th id="T_d0ffb_level0_col2" class="col_heading level0 col2" >image</th>
+      <th id="T_4b76b_level0_col0" class="col_heading level0 col0" >subject</th>
+      <th id="T_4b76b_level0_col1" class="col_heading level0 col1" >run</th>
+      <th id="T_4b76b_level0_col2" class="col_heading level0 col2" >image</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_d0ffb_row0_col0" class="data row0 col0" >01</td>
-      <td id="T_d0ffb_row0_col1" class="data row0 col1" >1</td>
-      <td id="T_d0ffb_row0_col2" class="data row0 col2" >sub-01_task-simon_run-1_bold.nii.gz</td>
+      <td id="T_4b76b_row0_col0" class="data row0 col0" >01</td>
+      <td id="T_4b76b_row0_col1" class="data row0 col1" >1</td>
+      <td id="T_4b76b_row0_col2" class="data row0 col2" >sub-01_task-simon_run-1_bold.nii.gz</td>
     </tr>
     <tr>
-      <td id="T_d0ffb_row1_col0" class="data row1 col0" >02</td>
-      <td id="T_d0ffb_row1_col1" class="data row1 col1" >1</td>
-      <td id="T_d0ffb_row1_col2" class="data row1 col2" >sub-02_task-simon_run-1_bold.nii.gz</td>
+      <td id="T_4b76b_row1_col0" class="data row1 col0" >02</td>
+      <td id="T_4b76b_row1_col1" class="data row1 col1" >1</td>
+      <td id="T_4b76b_row1_col2" class="data row1 col2" >sub-02_task-simon_run-1_bold.nii.gz</td>
     </tr>
     <tr>
-      <td id="T_d0ffb_row2_col0" class="data row2 col0" >03</td>
-      <td id="T_d0ffb_row2_col1" class="data row2 col1" >1</td>
-      <td id="T_d0ffb_row2_col2" class="data row2 col2" >sub-03_task-simon_run-1_bold.nii.gz</td>
+      <td id="T_4b76b_row2_col0" class="data row2 col0" >03</td>
+      <td id="T_4b76b_row2_col1" class="data row2 col1" >1</td>
+      <td id="T_4b76b_row2_col2" class="data row2 col2" >sub-03_task-simon_run-1_bold.nii.gz</td>
     </tr>
   </tbody>
 </table>
 </div><div class="output text_html"><style type="text/css">
 </style>
-<table id="T_c2323">
+<table id="T_7e4d5">
   <thead>
     <tr>
-      <th id="T_c2323_level0_col0" class="col_heading level0 col0" >subject</th>
-      <th id="T_c2323_level0_col1" class="col_heading level0 col1" >run</th>
-      <th id="T_c2323_level0_col2" class="col_heading level0 col2" >image</th>
+      <th id="T_7e4d5_level0_col0" class="col_heading level0 col0" >subject</th>
+      <th id="T_7e4d5_level0_col1" class="col_heading level0 col1" >run</th>
+      <th id="T_7e4d5_level0_col2" class="col_heading level0 col2" >image</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_c2323_row0_col0" class="data row0 col0" >01</td>
-      <td id="T_c2323_row0_col1" class="data row0 col1" >2</td>
-      <td id="T_c2323_row0_col2" class="data row0 col2" >sub-01_task-simon_run-2_bold.nii.gz</td>
+      <td id="T_7e4d5_row0_col0" class="data row0 col0" >01</td>
+      <td id="T_7e4d5_row0_col1" class="data row0 col1" >2</td>
+      <td id="T_7e4d5_row0_col2" class="data row0 col2" >sub-01_task-simon_run-2_bold.nii.gz</td>
     </tr>
     <tr>
-      <td id="T_c2323_row1_col0" class="data row1 col0" >02</td>
-      <td id="T_c2323_row1_col1" class="data row1 col1" >2</td>
-      <td id="T_c2323_row1_col2" class="data row1 col2" >sub-02_task-simon_run-2_bold.nii.gz</td>
+      <td id="T_7e4d5_row1_col0" class="data row1 col0" >02</td>
+      <td id="T_7e4d5_row1_col1" class="data row1 col1" >2</td>
+      <td id="T_7e4d5_row1_col2" class="data row1 col2" >sub-02_task-simon_run-2_bold.nii.gz</td>
     </tr>
     <tr>
-      <td id="T_c2323_row2_col0" class="data row2 col0" >03</td>
-      <td id="T_c2323_row2_col1" class="data row2 col1" >2</td>
-      <td id="T_c2323_row2_col2" class="data row2 col2" >sub-03_task-simon_run-2_bold.nii.gz</td>
+      <td id="T_7e4d5_row2_col0" class="data row2 col0" >03</td>
+      <td id="T_7e4d5_row2_col1" class="data row2 col1" >2</td>
+      <td id="T_7e4d5_row2_col2" class="data row2 col2" >sub-03_task-simon_run-2_bold.nii.gz</td>
     </tr>
   </tbody>
 </table>
@@ -790,109 +774,109 @@ two runs each, we can define 6 rows in a table (3x2):</p>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_07278">
+<table id="T_62b43">
   <thead>
     <tr>
-      <th id="T_07278_level0_col0" class="col_heading level0 col0" >subject</th>
-      <th id="T_07278_level0_col1" class="col_heading level0 col1" >run</th>
-      <th id="T_07278_level0_col2" class="col_heading level0 col2" >image</th>
+      <th id="T_62b43_level0_col0" class="col_heading level0 col0" >subject</th>
+      <th id="T_62b43_level0_col1" class="col_heading level0 col1" >run</th>
+      <th id="T_62b43_level0_col2" class="col_heading level0 col2" >image</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_07278_row0_col0" class="data row0 col0" >01</td>
-      <td id="T_07278_row0_col1" class="data row0 col1" >1</td>
-      <td id="T_07278_row0_col2" class="data row0 col2" >sub-01_task-simon_run-1_bold.nii.gz</td>
+      <td id="T_62b43_row0_col0" class="data row0 col0" >01</td>
+      <td id="T_62b43_row0_col1" class="data row0 col1" >1</td>
+      <td id="T_62b43_row0_col2" class="data row0 col2" >sub-01_task-simon_run-1_bold.nii.gz</td>
     </tr>
   </tbody>
 </table>
 </div><div class="output text_html"><style type="text/css">
 </style>
-<table id="T_8c18f">
+<table id="T_c2f92">
   <thead>
     <tr>
-      <th id="T_8c18f_level0_col0" class="col_heading level0 col0" >subject</th>
-      <th id="T_8c18f_level0_col1" class="col_heading level0 col1" >run</th>
-      <th id="T_8c18f_level0_col2" class="col_heading level0 col2" >image</th>
+      <th id="T_c2f92_level0_col0" class="col_heading level0 col0" >subject</th>
+      <th id="T_c2f92_level0_col1" class="col_heading level0 col1" >run</th>
+      <th id="T_c2f92_level0_col2" class="col_heading level0 col2" >image</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_8c18f_row0_col0" class="data row0 col0" >02</td>
-      <td id="T_8c18f_row0_col1" class="data row0 col1" >1</td>
-      <td id="T_8c18f_row0_col2" class="data row0 col2" >sub-02_task-simon_run-1_bold.nii.gz</td>
+      <td id="T_c2f92_row0_col0" class="data row0 col0" >02</td>
+      <td id="T_c2f92_row0_col1" class="data row0 col1" >1</td>
+      <td id="T_c2f92_row0_col2" class="data row0 col2" >sub-02_task-simon_run-1_bold.nii.gz</td>
     </tr>
   </tbody>
 </table>
 </div><div class="output text_html"><style type="text/css">
 </style>
-<table id="T_7f775">
+<table id="T_f66d4">
   <thead>
     <tr>
-      <th id="T_7f775_level0_col0" class="col_heading level0 col0" >subject</th>
-      <th id="T_7f775_level0_col1" class="col_heading level0 col1" >run</th>
-      <th id="T_7f775_level0_col2" class="col_heading level0 col2" >image</th>
+      <th id="T_f66d4_level0_col0" class="col_heading level0 col0" >subject</th>
+      <th id="T_f66d4_level0_col1" class="col_heading level0 col1" >run</th>
+      <th id="T_f66d4_level0_col2" class="col_heading level0 col2" >image</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_7f775_row0_col0" class="data row0 col0" >03</td>
-      <td id="T_7f775_row0_col1" class="data row0 col1" >1</td>
-      <td id="T_7f775_row0_col2" class="data row0 col2" >sub-03_task-simon_run-1_bold.nii.gz</td>
+      <td id="T_f66d4_row0_col0" class="data row0 col0" >03</td>
+      <td id="T_f66d4_row0_col1" class="data row0 col1" >1</td>
+      <td id="T_f66d4_row0_col2" class="data row0 col2" >sub-03_task-simon_run-1_bold.nii.gz</td>
     </tr>
   </tbody>
 </table>
 </div><div class="output text_html"><style type="text/css">
 </style>
-<table id="T_5dfe1">
+<table id="T_2bac4">
   <thead>
     <tr>
-      <th id="T_5dfe1_level0_col0" class="col_heading level0 col0" >subject</th>
-      <th id="T_5dfe1_level0_col1" class="col_heading level0 col1" >run</th>
-      <th id="T_5dfe1_level0_col2" class="col_heading level0 col2" >image</th>
+      <th id="T_2bac4_level0_col0" class="col_heading level0 col0" >subject</th>
+      <th id="T_2bac4_level0_col1" class="col_heading level0 col1" >run</th>
+      <th id="T_2bac4_level0_col2" class="col_heading level0 col2" >image</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_5dfe1_row0_col0" class="data row0 col0" >01</td>
-      <td id="T_5dfe1_row0_col1" class="data row0 col1" >2</td>
-      <td id="T_5dfe1_row0_col2" class="data row0 col2" >sub-01_task-simon_run-2_bold.nii.gz</td>
+      <td id="T_2bac4_row0_col0" class="data row0 col0" >01</td>
+      <td id="T_2bac4_row0_col1" class="data row0 col1" >2</td>
+      <td id="T_2bac4_row0_col2" class="data row0 col2" >sub-01_task-simon_run-2_bold.nii.gz</td>
     </tr>
   </tbody>
 </table>
 </div><div class="output text_html"><style type="text/css">
 </style>
-<table id="T_c03a9">
+<table id="T_c357d">
   <thead>
     <tr>
-      <th id="T_c03a9_level0_col0" class="col_heading level0 col0" >subject</th>
-      <th id="T_c03a9_level0_col1" class="col_heading level0 col1" >run</th>
-      <th id="T_c03a9_level0_col2" class="col_heading level0 col2" >image</th>
+      <th id="T_c357d_level0_col0" class="col_heading level0 col0" >subject</th>
+      <th id="T_c357d_level0_col1" class="col_heading level0 col1" >run</th>
+      <th id="T_c357d_level0_col2" class="col_heading level0 col2" >image</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_c03a9_row0_col0" class="data row0 col0" >02</td>
-      <td id="T_c03a9_row0_col1" class="data row0 col1" >2</td>
-      <td id="T_c03a9_row0_col2" class="data row0 col2" >sub-02_task-simon_run-2_bold.nii.gz</td>
+      <td id="T_c357d_row0_col0" class="data row0 col0" >02</td>
+      <td id="T_c357d_row0_col1" class="data row0 col1" >2</td>
+      <td id="T_c357d_row0_col2" class="data row0 col2" >sub-02_task-simon_run-2_bold.nii.gz</td>
     </tr>
   </tbody>
 </table>
 </div><div class="output text_html"><style type="text/css">
 </style>
-<table id="T_e6863">
+<table id="T_909a8">
   <thead>
     <tr>
-      <th id="T_e6863_level0_col0" class="col_heading level0 col0" >subject</th>
-      <th id="T_e6863_level0_col1" class="col_heading level0 col1" >run</th>
-      <th id="T_e6863_level0_col2" class="col_heading level0 col2" >image</th>
+      <th id="T_909a8_level0_col0" class="col_heading level0 col0" >subject</th>
+      <th id="T_909a8_level0_col1" class="col_heading level0 col1" >run</th>
+      <th id="T_909a8_level0_col2" class="col_heading level0 col2" >image</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_e6863_row0_col0" class="data row0 col0" >03</td>
-      <td id="T_e6863_row0_col1" class="data row0 col1" >2</td>
-      <td id="T_e6863_row0_col2" class="data row0 col2" >sub-03_task-simon_run-2_bold.nii.gz</td>
+      <td id="T_909a8_row0_col0" class="data row0 col0" >03</td>
+      <td id="T_909a8_row0_col1" class="data row0 col1" >2</td>
+      <td id="T_909a8_row0_col2" class="data row0 col2" >sub-03_task-simon_run-2_bold.nii.gz</td>
     </tr>
   </tbody>
 </table>
@@ -912,9 +896,7 @@ subject’s runs together.</p>
 </div>
 <p>We need to use <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> to define how to group the outputs from the <code class="docutils literal notranslate"><span class="pre">Run</span></code> node
 as inputs to the <code class="docutils literal notranslate"><span class="pre">Subject</span></code> level:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;Level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Subject&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;subject_level&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;GroupBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;contrast&quot;</span><span class="p">],</span><span class="w"></span>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;GroupBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;contrast&quot;</span><span class="p">],</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Here we are specifying that all images belonging to a single <code class="docutils literal notranslate"><span class="pre">subject</span></code> and from a single <code class="docutils literal notranslate"><span class="pre">contrast</span></code> should be grouped together for analysis.</p>
@@ -923,115 +905,115 @@ as inputs to the <code class="docutils literal notranslate"><span class="pre">Su
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_6a91c">
+<table id="T_3522c">
   <thead>
     <tr>
-      <th id="T_6a91c_level0_col0" class="col_heading level0 col0" >subject</th>
-      <th id="T_6a91c_level0_col1" class="col_heading level0 col1" >run</th>
-      <th id="T_6a91c_level0_col2" class="col_heading level0 col2" >contrast</th>
-      <th id="T_6a91c_level0_col3" class="col_heading level0 col3" >image</th>
+      <th id="T_3522c_level0_col0" class="col_heading level0 col0" >subject</th>
+      <th id="T_3522c_level0_col1" class="col_heading level0 col1" >run</th>
+      <th id="T_3522c_level0_col2" class="col_heading level0 col2" >contrast</th>
+      <th id="T_3522c_level0_col3" class="col_heading level0 col3" >image</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_6a91c_row0_col0" class="data row0 col0" >01</td>
-      <td id="T_6a91c_row0_col1" class="data row0 col1" >1</td>
-      <td id="T_6a91c_row0_col2" class="data row0 col2" >IvC</td>
-      <td id="T_6a91c_row0_col3" class="data row0 col3" >sub-01_task-simon_run-1_contrast-IvC_stat-effect_statmap.nii</td>
+      <td id="T_3522c_row0_col0" class="data row0 col0" >01</td>
+      <td id="T_3522c_row0_col1" class="data row0 col1" >1</td>
+      <td id="T_3522c_row0_col2" class="data row0 col2" >IvC</td>
+      <td id="T_3522c_row0_col3" class="data row0 col3" >sub-01_task-simon_run-1_contrast-IvC_stat-effect_statmap.nii</td>
     </tr>
     <tr>
-      <td id="T_6a91c_row1_col0" class="data row1 col0" >01</td>
-      <td id="T_6a91c_row1_col1" class="data row1 col1" >1</td>
-      <td id="T_6a91c_row1_col2" class="data row1 col2" >IvC</td>
-      <td id="T_6a91c_row1_col3" class="data row1 col3" >sub-01_task-simon_run-1_contrast-IvC_stat-variance_statmap.nii</td>
+      <td id="T_3522c_row1_col0" class="data row1 col0" >01</td>
+      <td id="T_3522c_row1_col1" class="data row1 col1" >1</td>
+      <td id="T_3522c_row1_col2" class="data row1 col2" >IvC</td>
+      <td id="T_3522c_row1_col3" class="data row1 col3" >sub-01_task-simon_run-1_contrast-IvC_stat-variance_statmap.nii</td>
     </tr>
     <tr>
-      <td id="T_6a91c_row2_col0" class="data row2 col0" >01</td>
-      <td id="T_6a91c_row2_col1" class="data row2 col1" >2</td>
-      <td id="T_6a91c_row2_col2" class="data row2 col2" >IvC</td>
-      <td id="T_6a91c_row2_col3" class="data row2 col3" >sub-01_task-simon_run-2_contrast-IvC_stat-effect_statmap.nii</td>
+      <td id="T_3522c_row2_col0" class="data row2 col0" >01</td>
+      <td id="T_3522c_row2_col1" class="data row2 col1" >2</td>
+      <td id="T_3522c_row2_col2" class="data row2 col2" >IvC</td>
+      <td id="T_3522c_row2_col3" class="data row2 col3" >sub-01_task-simon_run-2_contrast-IvC_stat-effect_statmap.nii</td>
     </tr>
     <tr>
-      <td id="T_6a91c_row3_col0" class="data row3 col0" >01</td>
-      <td id="T_6a91c_row3_col1" class="data row3 col1" >2</td>
-      <td id="T_6a91c_row3_col2" class="data row3 col2" >IvC</td>
-      <td id="T_6a91c_row3_col3" class="data row3 col3" >sub-01_task-simon_run-2_contrast-IvC_stat-variance_statmap.nii</td>
+      <td id="T_3522c_row3_col0" class="data row3 col0" >01</td>
+      <td id="T_3522c_row3_col1" class="data row3 col1" >2</td>
+      <td id="T_3522c_row3_col2" class="data row3 col2" >IvC</td>
+      <td id="T_3522c_row3_col3" class="data row3 col3" >sub-01_task-simon_run-2_contrast-IvC_stat-variance_statmap.nii</td>
     </tr>
   </tbody>
 </table>
 </div><div class="output text_html"><style type="text/css">
 </style>
-<table id="T_90997">
+<table id="T_0986d">
   <thead>
     <tr>
-      <th id="T_90997_level0_col0" class="col_heading level0 col0" >subject</th>
-      <th id="T_90997_level0_col1" class="col_heading level0 col1" >run</th>
-      <th id="T_90997_level0_col2" class="col_heading level0 col2" >contrast</th>
-      <th id="T_90997_level0_col3" class="col_heading level0 col3" >image</th>
+      <th id="T_0986d_level0_col0" class="col_heading level0 col0" >subject</th>
+      <th id="T_0986d_level0_col1" class="col_heading level0 col1" >run</th>
+      <th id="T_0986d_level0_col2" class="col_heading level0 col2" >contrast</th>
+      <th id="T_0986d_level0_col3" class="col_heading level0 col3" >image</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_90997_row0_col0" class="data row0 col0" >02</td>
-      <td id="T_90997_row0_col1" class="data row0 col1" >1</td>
-      <td id="T_90997_row0_col2" class="data row0 col2" >IvC</td>
-      <td id="T_90997_row0_col3" class="data row0 col3" >sub-02_task-simon_run-1_contrast-IvC_stat-effect_statmap.nii</td>
+      <td id="T_0986d_row0_col0" class="data row0 col0" >02</td>
+      <td id="T_0986d_row0_col1" class="data row0 col1" >1</td>
+      <td id="T_0986d_row0_col2" class="data row0 col2" >IvC</td>
+      <td id="T_0986d_row0_col3" class="data row0 col3" >sub-02_task-simon_run-1_contrast-IvC_stat-effect_statmap.nii</td>
     </tr>
     <tr>
-      <td id="T_90997_row1_col0" class="data row1 col0" >02</td>
-      <td id="T_90997_row1_col1" class="data row1 col1" >1</td>
-      <td id="T_90997_row1_col2" class="data row1 col2" >IvC</td>
-      <td id="T_90997_row1_col3" class="data row1 col3" >sub-02_task-simon_run-1_contrast-IvC_stat-variance_statmap.nii</td>
+      <td id="T_0986d_row1_col0" class="data row1 col0" >02</td>
+      <td id="T_0986d_row1_col1" class="data row1 col1" >1</td>
+      <td id="T_0986d_row1_col2" class="data row1 col2" >IvC</td>
+      <td id="T_0986d_row1_col3" class="data row1 col3" >sub-02_task-simon_run-1_contrast-IvC_stat-variance_statmap.nii</td>
     </tr>
     <tr>
-      <td id="T_90997_row2_col0" class="data row2 col0" >02</td>
-      <td id="T_90997_row2_col1" class="data row2 col1" >2</td>
-      <td id="T_90997_row2_col2" class="data row2 col2" >IvC</td>
-      <td id="T_90997_row2_col3" class="data row2 col3" >sub-02_task-simon_run-2_contrast-IvC_stat-effect_statmap.nii</td>
+      <td id="T_0986d_row2_col0" class="data row2 col0" >02</td>
+      <td id="T_0986d_row2_col1" class="data row2 col1" >2</td>
+      <td id="T_0986d_row2_col2" class="data row2 col2" >IvC</td>
+      <td id="T_0986d_row2_col3" class="data row2 col3" >sub-02_task-simon_run-2_contrast-IvC_stat-effect_statmap.nii</td>
     </tr>
     <tr>
-      <td id="T_90997_row3_col0" class="data row3 col0" >02</td>
-      <td id="T_90997_row3_col1" class="data row3 col1" >2</td>
-      <td id="T_90997_row3_col2" class="data row3 col2" >IvC</td>
-      <td id="T_90997_row3_col3" class="data row3 col3" >sub-02_task-simon_run-2_contrast-IvC_stat-variance_statmap.nii</td>
+      <td id="T_0986d_row3_col0" class="data row3 col0" >02</td>
+      <td id="T_0986d_row3_col1" class="data row3 col1" >2</td>
+      <td id="T_0986d_row3_col2" class="data row3 col2" >IvC</td>
+      <td id="T_0986d_row3_col3" class="data row3 col3" >sub-02_task-simon_run-2_contrast-IvC_stat-variance_statmap.nii</td>
     </tr>
   </tbody>
 </table>
 </div><div class="output text_html"><style type="text/css">
 </style>
-<table id="T_13953">
+<table id="T_dce2a">
   <thead>
     <tr>
-      <th id="T_13953_level0_col0" class="col_heading level0 col0" >subject</th>
-      <th id="T_13953_level0_col1" class="col_heading level0 col1" >run</th>
-      <th id="T_13953_level0_col2" class="col_heading level0 col2" >contrast</th>
-      <th id="T_13953_level0_col3" class="col_heading level0 col3" >image</th>
+      <th id="T_dce2a_level0_col0" class="col_heading level0 col0" >subject</th>
+      <th id="T_dce2a_level0_col1" class="col_heading level0 col1" >run</th>
+      <th id="T_dce2a_level0_col2" class="col_heading level0 col2" >contrast</th>
+      <th id="T_dce2a_level0_col3" class="col_heading level0 col3" >image</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_13953_row0_col0" class="data row0 col0" >03</td>
-      <td id="T_13953_row0_col1" class="data row0 col1" >1</td>
-      <td id="T_13953_row0_col2" class="data row0 col2" >IvC</td>
-      <td id="T_13953_row0_col3" class="data row0 col3" >sub-03_task-simon_run-1_contrast-IvC_stat-effect_statmap.nii</td>
+      <td id="T_dce2a_row0_col0" class="data row0 col0" >03</td>
+      <td id="T_dce2a_row0_col1" class="data row0 col1" >1</td>
+      <td id="T_dce2a_row0_col2" class="data row0 col2" >IvC</td>
+      <td id="T_dce2a_row0_col3" class="data row0 col3" >sub-03_task-simon_run-1_contrast-IvC_stat-effect_statmap.nii</td>
     </tr>
     <tr>
-      <td id="T_13953_row1_col0" class="data row1 col0" >03</td>
-      <td id="T_13953_row1_col1" class="data row1 col1" >1</td>
-      <td id="T_13953_row1_col2" class="data row1 col2" >IvC</td>
-      <td id="T_13953_row1_col3" class="data row1 col3" >sub-03_task-simon_run-1_contrast-IvC_stat-variance_statmap.nii</td>
+      <td id="T_dce2a_row1_col0" class="data row1 col0" >03</td>
+      <td id="T_dce2a_row1_col1" class="data row1 col1" >1</td>
+      <td id="T_dce2a_row1_col2" class="data row1 col2" >IvC</td>
+      <td id="T_dce2a_row1_col3" class="data row1 col3" >sub-03_task-simon_run-1_contrast-IvC_stat-variance_statmap.nii</td>
     </tr>
     <tr>
-      <td id="T_13953_row2_col0" class="data row2 col0" >03</td>
-      <td id="T_13953_row2_col1" class="data row2 col1" >2</td>
-      <td id="T_13953_row2_col2" class="data row2 col2" >IvC</td>
-      <td id="T_13953_row2_col3" class="data row2 col3" >sub-03_task-simon_run-2_contrast-IvC_stat-effect_statmap.nii</td>
+      <td id="T_dce2a_row2_col0" class="data row2 col0" >03</td>
+      <td id="T_dce2a_row2_col1" class="data row2 col1" >2</td>
+      <td id="T_dce2a_row2_col2" class="data row2 col2" >IvC</td>
+      <td id="T_dce2a_row2_col3" class="data row2 col3" >sub-03_task-simon_run-2_contrast-IvC_stat-effect_statmap.nii</td>
     </tr>
     <tr>
-      <td id="T_13953_row3_col0" class="data row3 col0" >03</td>
-      <td id="T_13953_row3_col1" class="data row3 col1" >2</td>
-      <td id="T_13953_row3_col2" class="data row3 col2" >IvC</td>
-      <td id="T_13953_row3_col3" class="data row3 col3" >sub-03_task-simon_run-2_contrast-IvC_stat-variance_statmap.nii</td>
+      <td id="T_dce2a_row3_col0" class="data row3 col0" >03</td>
+      <td id="T_dce2a_row3_col1" class="data row3 col1" >2</td>
+      <td id="T_dce2a_row3_col2" class="data row3 col2" >IvC</td>
+      <td id="T_dce2a_row3_col3" class="data row3 col3" >sub-03_task-simon_run-2_contrast-IvC_stat-variance_statmap.nii</td>
     </tr>
   </tbody>
 </table>
@@ -1042,8 +1024,8 @@ as inputs to the <code class="docutils literal notranslate"><span class="pre">Su
 <p>In this example there is only one <code class="docutils literal notranslate"><span class="pre">contrast</span></code>, but we include <code class="docutils literal notranslate"><span class="pre">contrast</span></code> as a grouping variable to be explicit.</p>
 </div>
 </div>
-<div class="section" id="subject-level-model">
-<h4>Subject-level Model<a class="headerlink" href="#subject-level-model" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="subject-model">
+<h4>Subject Model<a class="headerlink" href="#subject-model" title="Permalink to this headline">¶</a></h4>
 <p>We can now specify the <code class="docutils literal notranslate"><span class="pre">Subject</span></code> level <code class="docutils literal notranslate"><span class="pre">Model</span></code>. Since our intent is to estimate
 the <em>mean</em> for each subject, we only need an intercept (<code class="docutils literal notranslate"><span class="pre">1</span></code>) in our model. We
 specify the <code class="docutils literal notranslate"><span class="pre">&quot;Type&quot;</span></code> to be <code class="docutils literal notranslate"><span class="pre">Meta</span></code>, which is a special type to identify
@@ -1053,18 +1035,7 @@ next <code class="docutils literal notranslate"><span class="pre">Node</span></c
 subject-evel estimates forward. Note that we specified the <code class="docutils literal notranslate"><span class="pre">Test</span></code> as <code class="docutils literal notranslate"><span class="pre">pass</span></code>,
 since we don’t want to perform a t-test, but simply need to compute and pass
 forward parameter and variance estimates.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;Model&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;X&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Meta&quot;</span><span class="w"></span>
-<span class="w">      </span><span class="p">},</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;Contrasts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IvC&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;ConditionList&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;IvC&quot;</span><span class="p">],</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;Weights&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;Test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pass&quot;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="p">]</span><span class="w"></span>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;DummyContrasts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;Test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pass&quot;</span><span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -1073,9 +1044,7 @@ forward parameter and variance estimates.</p>
 <h3>Dataset level Node<a class="headerlink" href="#dataset-level-node" title="Permalink to this headline">¶</a></h3>
 <p>We are ready to perform a one-sample t-test to estimate population-level effects
 for the <em>IvC</em> <code class="docutils literal notranslate"><span class="pre">Contrast</span></code>. We refer to this level as the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> level.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;Level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dataset&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;one-sample_dataset&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;GroupBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;contrast&quot;</span><span class="p">],</span><span class="w"></span>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;GroupBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;contrast&quot;</span><span class="p">],</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Here we only need to <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> <code class="docutils literal notranslate"><span class="pre">contrast</span></code>, as we want a separate estimate for
@@ -1086,63 +1055,52 @@ together:</p>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_c2bf6">
+<table id="T_5807a">
   <thead>
     <tr>
-      <th id="T_c2bf6_level0_col0" class="col_heading level0 col0" >subject</th>
-      <th id="T_c2bf6_level0_col1" class="col_heading level0 col1" >contrast</th>
-      <th id="T_c2bf6_level0_col2" class="col_heading level0 col2" >image</th>
+      <th id="T_5807a_level0_col0" class="col_heading level0 col0" >subject</th>
+      <th id="T_5807a_level0_col1" class="col_heading level0 col1" >contrast</th>
+      <th id="T_5807a_level0_col2" class="col_heading level0 col2" >image</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_c2bf6_row0_col0" class="data row0 col0" >01</td>
-      <td id="T_c2bf6_row0_col1" class="data row0 col1" >IvC</td>
-      <td id="T_c2bf6_row0_col2" class="data row0 col2" >sub-01_task-simon_contrast-IvC_stat-effect_statmap.nii</td>
+      <td id="T_5807a_row0_col0" class="data row0 col0" >01</td>
+      <td id="T_5807a_row0_col1" class="data row0 col1" >IvC</td>
+      <td id="T_5807a_row0_col2" class="data row0 col2" >sub-01_task-simon_contrast-IvC_stat-effect_statmap.nii</td>
     </tr>
     <tr>
-      <td id="T_c2bf6_row1_col0" class="data row1 col0" >01</td>
-      <td id="T_c2bf6_row1_col1" class="data row1 col1" >IvC</td>
-      <td id="T_c2bf6_row1_col2" class="data row1 col2" >sub-01_task-simon_contrast-IvC_stat-variance_statmap.nii</td>
+      <td id="T_5807a_row1_col0" class="data row1 col0" >01</td>
+      <td id="T_5807a_row1_col1" class="data row1 col1" >IvC</td>
+      <td id="T_5807a_row1_col2" class="data row1 col2" >sub-01_task-simon_contrast-IvC_stat-variance_statmap.nii</td>
     </tr>
     <tr>
-      <td id="T_c2bf6_row2_col0" class="data row2 col0" >02</td>
-      <td id="T_c2bf6_row2_col1" class="data row2 col1" >IvC</td>
-      <td id="T_c2bf6_row2_col2" class="data row2 col2" >sub-02_task-simon_contrast-IvC_stat-effect_statmap.nii</td>
+      <td id="T_5807a_row2_col0" class="data row2 col0" >02</td>
+      <td id="T_5807a_row2_col1" class="data row2 col1" >IvC</td>
+      <td id="T_5807a_row2_col2" class="data row2 col2" >sub-02_task-simon_contrast-IvC_stat-effect_statmap.nii</td>
     </tr>
     <tr>
-      <td id="T_c2bf6_row3_col0" class="data row3 col0" >02</td>
-      <td id="T_c2bf6_row3_col1" class="data row3 col1" >IvC</td>
-      <td id="T_c2bf6_row3_col2" class="data row3 col2" >sub-02_task-simon_contrast-IvC_stat-variance_statmap.nii</td>
+      <td id="T_5807a_row3_col0" class="data row3 col0" >02</td>
+      <td id="T_5807a_row3_col1" class="data row3 col1" >IvC</td>
+      <td id="T_5807a_row3_col2" class="data row3 col2" >sub-02_task-simon_contrast-IvC_stat-variance_statmap.nii</td>
     </tr>
     <tr>
-      <td id="T_c2bf6_row4_col0" class="data row4 col0" >03</td>
-      <td id="T_c2bf6_row4_col1" class="data row4 col1" >IvC</td>
-      <td id="T_c2bf6_row4_col2" class="data row4 col2" >sub-03_task-simon_contrast-IvC_stat-effect_statmap.nii</td>
+      <td id="T_5807a_row4_col0" class="data row4 col0" >03</td>
+      <td id="T_5807a_row4_col1" class="data row4 col1" >IvC</td>
+      <td id="T_5807a_row4_col2" class="data row4 col2" >sub-03_task-simon_contrast-IvC_stat-effect_statmap.nii</td>
     </tr>
     <tr>
-      <td id="T_c2bf6_row5_col0" class="data row5 col0" >03</td>
-      <td id="T_c2bf6_row5_col1" class="data row5 col1" >IvC</td>
-      <td id="T_c2bf6_row5_col2" class="data row5 col2" >sub-03_task-simon_contrast-IvC_stat-variance_statmap.nii</td>
+      <td id="T_5807a_row5_col0" class="data row5 col0" >03</td>
+      <td id="T_5807a_row5_col1" class="data row5 col1" >IvC</td>
+      <td id="T_5807a_row5_col2" class="data row5 col2" >sub-03_task-simon_contrast-IvC_stat-variance_statmap.nii</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 <p>As before, we can specify an intercept-only model, but of type <code class="docutils literal notranslate"><span class="pre">glm</span></code> since we want to perform a random-effects analysis. We also specify a single identity t-test <code class="docutils literal notranslate"><span class="pre">Contrast</span></code> in order to compute the output of this <code class="docutils literal notranslate"><span class="pre">Node</span></code>.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;Model&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;X&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;glm&quot;</span><span class="w"></span>
-<span class="w">      </span><span class="p">},</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;Contrasts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">        </span><span class="p">{</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;Name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IvC&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;ConditionList&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;IvC&quot;</span><span class="p">],</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;Weights&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;Test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="p">]</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;Model&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;X&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;glm&quot;</span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;DummyContrasts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;Test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The outputs of this node collapse across subjects, leaving a single effect/variance pair:</p>
@@ -1150,21 +1108,21 @@ together:</p>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_fd1e8">
+<table id="T_5a8e9">
   <thead>
     <tr>
-      <th id="T_fd1e8_level0_col0" class="col_heading level0 col0" >contrast</th>
-      <th id="T_fd1e8_level0_col1" class="col_heading level0 col1" >image</th>
+      <th id="T_5a8e9_level0_col0" class="col_heading level0 col0" >contrast</th>
+      <th id="T_5a8e9_level0_col1" class="col_heading level0 col1" >image</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td id="T_fd1e8_row0_col0" class="data row0 col0" >IvC</td>
-      <td id="T_fd1e8_row0_col1" class="data row0 col1" >task-simon_contrast-IvC_stat-effect_statmap.nii</td>
+      <td id="T_5a8e9_row0_col0" class="data row0 col0" >IvC</td>
+      <td id="T_5a8e9_row0_col1" class="data row0 col1" >task-simon_contrast-IvC_stat-effect_statmap.nii</td>
     </tr>
     <tr>
-      <td id="T_fd1e8_row1_col0" class="data row1 col0" >IvC</td>
-      <td id="T_fd1e8_row1_col1" class="data row1 col1" >task-simon_contrast-IvC_stat-variance_statmap.nii</td>
+      <td id="T_5a8e9_row1_col0" class="data row1 col0" >IvC</td>
+      <td id="T_5a8e9_row1_col1" class="data row1 col1" >task-simon_contrast-IvC_stat-variance_statmap.nii</td>
     </tr>
   </tbody>
 </table>
