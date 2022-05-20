@@ -10,9 +10,7 @@ kernelspec:
   name: python3
 ---
 
-# Walkthrough 
-
-## The problem: Representing multi-stage models
+# Representing multi-stage neuroimaging models
 
 The statistical analysis of neuroimaging data typically occurs across distinct
 stages of analysis, with parameter estimates from lower levels of analysis
@@ -352,6 +350,6 @@ We can now pair this *BSM* specification with a pre-processed derivative from th
 
 ## Next up
 
-- Read the next chapter to dive deeper into advanced usage of *BSM* to enable more complex models.
+- Read the next section to dive deeper into advanced usage of *BSM* to enable more complex models.
 - Check out tools like [FitLins](https://github.com/poldracklab/fitlins) which implement *BSM* execution to learn how to run a *BIDS Stats Model*
 - Take a look at more example models in the  **[](model-zoo.md)**.
